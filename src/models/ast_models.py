@@ -183,17 +183,17 @@ class ASTModel(nn.Module):
 
 if __name__ == '__main__':
     input_tdim = 100
-    ast_mdl = ASTModel(input_tdim=input_tdim)
+    ast_mdl = ASTModel(input_tdim=input_tdim).cuda()
     # input a batch of 10 spectrogram, each with 100 time frames and 128 frequency bins
-    test_input = torch.rand([10, input_tdim, 128])
+    test_input = torch.rand([10, input_tdim, 128]).cuda()
     test_output = ast_mdl(test_input)
     # output should be in shape [10, 527], i.e., 10 samples, each with prediction of 527 classes.
     print(test_output.shape)
 
     input_tdim = 256
-    ast_mdl = ASTModel(input_tdim=input_tdim,label_dim=50, audioset_pretrain=True)
+    ast_mdl = ASTModel(input_tdim=input_tdim,label_dim=50, audioset_pretrain=True).cuda()
     # input a batch of 10 spectrogram, each with 512 time frames and 128 frequency bins
-    test_input = torch.rand([10, input_tdim, 128])
+    test_input = torch.rand([10, input_tdim, 128]).cuda()
     test_output = ast_mdl(test_input)
     # output should be in shape [10, 50], i.e., 10 samples, each with prediction of 50 classes.
     print(test_output.shape)
